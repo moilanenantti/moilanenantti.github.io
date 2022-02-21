@@ -30,18 +30,18 @@
 
                 <script>
                     function hideORshow(){
+                        loadXMLDocument();
                         var x = document.getElementById("demo3");
                         var y = document.getElementById("code");
                         var z = document.getElementById("button");
-                            if (x.style.display === "none") {
-                                loadXMLDocument();
+                            if (x.style.display === "none") { 
                                 x.style.display = "block";
                                 y.style.display = "block"; 
-                                z.value = "Piilota lista muutamista Suomen kunnista / kaupungeista";   
+                                z.innerHTML = "Piilota lista muutamista Suomen kunnista / kaupungeista";   
                             } else {
                                 x.style.display = "none";
                                 y.style.display = "none";
-                                z.value = "Näytä lista muutamista Suomen kunnista / kaupungeista";
+                                z.innerHTML = "Näytä lista muutamista Suomen kunnista / kaupungeista";
                             }
                     }
 
@@ -131,12 +131,7 @@
                 </div>
             <div class="sidebarDivider"></div>
 
-                        <script> /* some functions here */
-                            function showCode(){
-                                var x = document.getElementById("code");
-                                x.style.display = "block";
-                            }
-
+                        <script> /* some functions leading to alert here */
                             function myFunction(){
                                 alert("En osaa vielä :[");
                             }
