@@ -29,23 +29,29 @@
                 <table id="demo3"></table>
 
                 <script>
+                    var firstTimeClicked = false;
+
                     function hideORshow(){
                         loadXMLDocument();
                         var x = document.getElementById("demo3");
                         var y = document.getElementById("code");
                         var z = document.getElementById("button");
                         console.log("table button clicked");
-                            if (x.style.display === "none") { 
-                                x.style.display = "block";
-                                y.style.display = "block"; 
-                                z.innerHTML = "Piilota lista muutamista Suomen kunnista / kaupungeista"; 
-                                console.log("show table");
-                            } else {
-                                x.style.display = "none";
-                                y.style.display = "none";
-                                z.innerHTML = "Näytä lista muutamista Suomen kunnista / kaupungeista";
-                                console.log("hide table");
-                            }
+                        if (firstTimeClicked == false){
+                            firstTimeClicked = true;
+                            x.style.display = "block";
+                            y.style.display = "block"; 
+                            z.innerHTML = "Piilota lista muutamista Suomen kunnista / kaupungeista"; 
+                        }
+                        else if (x.style.display === "none") { 
+                            x.style.display = "block";
+                            y.style.display = "block"; 
+                            z.innerHTML = "Piilota lista muutamista Suomen kunnista / kaupungeista"; 
+                        } else {
+                            x.style.display = "none";
+                            y.style.display = "none";
+                            z.innerHTML = "Näytä lista muutamista Suomen kunnista / kaupungeista";
+                        }
                     }
 
                     function loadXMLDocument() {
