@@ -23,27 +23,25 @@
         </section>
         <section class="content">
             <div class="news">
-                <button type="button" onclick="loadXMLDoc()">Paina nähdäksesi taulu Helsingin kaupungin perustiedoista</button>
-                <table id="demo"></table>
 
-                <div id="code">
-                    <p class="description">Source code for XML looks like this:</p>
-                    <xmp>
-                        <kaupunki>
-                            <nimi>Helsinki</nimi>
-                            <perustamisvuosi>1550</perustamisvuosi>
-                            <väkiluku>658 000</väkiluku>
-                            <kokonaispintaala>71 548 km2</kokonaispintaala>
-                            <väestöntiheys>3 076 as./km2</väestöntiheys>
-                        </kaupunki>
-                    </xmp>
-                </div>
-
-                <button type="button" onclick="loadXMLDocument()">Näytä lista muutamista Suomen kunnista</button>
+                <button type="button" onclick="hideORshow()">Näytä lista muutamista Suomen kunnista / kaupungeista</button>
                 <br><br>
                 <table id="demo3"></table>
 
                 <script>
+                    function hideORshow(){
+                        var x = document.getElementById("demo3");
+                        var y = document.getElementById("code");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                                y.style.display = "block";
+                                loadXMLDocument();
+                            } else {
+                                x.style.display = "none";
+                                y.style.display = "none";
+                            }
+                    }
+
                     function loadXMLDocument() {
                       var xmlhttp = new XMLHttpRequest();
                       xmlhttp.onreadystatechange = function() {
@@ -76,17 +74,50 @@
                     }
                     </script>
 
-
+                    <div id="code">
+                        <p class="description">Source code for XML looks like this:</p>
+                        <xmp>
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <LISTA>
+                                <KAUPUNKI>
+                                    <NIMI>Helsinki</NIMI>
+                                        <PERUSTAMISVUOSI>1550</PERUSTAMISVUOSI>
+                                        <VAKILUKU>658 000</VAKILUKU>
+                                        <KOKONAISPINTAALA>715 km2</KOKONAISPINTAALA>
+                                        <VAESTONTIHEYS>3 076 as./km2</VAESTONTIHEYS>
+                                </KAUPUNKI>
+                                <KAUPUNKI>
+                                    <NIMI>Tampere</NIMI>
+                                        <PERUSTAMISVUOSI>1779</PERUSTAMISVUOSI>
+                                        <VAKILUKU>244 300</VAKILUKU>
+                                        <KOKONAISPINTAALA>689 km2</KOKONAISPINTAALA>
+                                        <VAESTONTIHEYS>465 as./km2</VAESTONTIHEYS>
+                                </KAUPUNKI>
+                                <KAUPUNKI>
+                                    <NIMI>Oulu</NIMI>
+                                        <PERUSTAMISVUOSI>1605</PERUSTAMISVUOSI>
+                                        <VAKILUKU>209 600</VAKILUKU>
+                                        <KOKONAISPINTAALA>3817 km2</KOKONAISPINTAALA>
+                                        <VAESTONTIHEYS>70 as./km2</VAESTONTIHEYS>
+                                </KAUPUNKI>
+                                <KAUPUNKI>
+                                    <NIMI>Sodankylä</NIMI>
+                                        <PERUSTAMISVUOSI>1893</PERUSTAMISVUOSI>
+                                        <VAKILUKU>8 100</VAKILUKU>
+                                        <KOKONAISPINTAALA>12 415 km2</KOKONAISPINTAALA>
+                                        <VAESTONTIHEYS>0.7 as./km2</VAESTONTIHEYS>
+                                </KAUPUNKI>
+                            </LISTA>    	
+                        </xmp>
+                    </div>
 
                 <div id="content"></div>
             </div>
             <div class="sidebar">
-
                 <div class="luetuimmatHeader">
                     <div class="luetuimmatTitle">Luetuimmat vitsit</div>
                     <div class="luetuimmatBorder"></div>
                 </div>
-
                 <div class="sidebarContent">
                     <div class="luetuimmat">
                         Joku lista tänne
@@ -97,7 +128,7 @@
                 </div>
             <div class="sidebarDivider"></div>
 
-                         <script>
+                        <script> /* some functions here */
                             function showCode(){
                                 var x = document.getElementById("code");
                                 x.style.display = "block";
@@ -114,53 +145,6 @@
                             function myAd(){
                                 alert("boring ad");
                             }
-                            
-                            function loadXMLDoc() {
-                                showCode();
-                                var text, parser, xmlDoc;
-
-                            text =
-                                "<kaupunki>" +
-                                    "<nimi>Helsinki</nimi>" +
-                                    "<perustamisvuosi>1550</perustamisvuosi>" +
-                                    "<väkiluku>658 000</väkiluku>" +
-                                    "<kokonaispintaala>71 548 km2</kokonaispintaala>" +
-                                    "<väestöntiheys>3 076 as./km2</väestöntiheys>" +
-                                "</kaupunki>";
-
-                            parser = new DOMParser();
-                            xmlDoc = parser.parseFromString(text, "text/xml");
-
-                            var i;
-                            var table="<tr><th>Kaupungin nimi</th><th>Perustamisvuosi</th><th>Väkiluku</th><th>Kokonaispinta-ala</th><th>Väestöntiheys</th></tr>";
-                            var x = xmlDoc.getElementsByTagName("kaupunki");
-                            console.log(x.length);
-                            console.log(x);
-                            for (i = 0; i <x.length; i++) {
-                                table += "<tr><td>" +
-                                x[i].getElementsByTagName("nimi")[0].childNodes[0].nodeValue +
-                                "</td><td>" +
-                                x[i].getElementsByTagName("perustamisvuosi")[0].childNodes[0].nodeValue +
-                                "</td><td>"+
-                                x[i].getElementsByTagName("väkiluku")[0].childNodes[0].nodeValue +
-                                "</td><td>" +
-                                x[i].getElementsByTagName("kokonaispintaala")[0].childNodes[0].nodeValue +
-                                "</td><td>" +
-                                x[i].getElementsByTagName("väestöntiheys")[0].childNodes[0].nodeValue +
-                                "</td></tr>";
-
-                            }
-                            document.getElementById("demo").innerHTML = table;
-                            var table2 = "<div> Tämän taulun tiedot on otettu XML tyylitellystä string -muuttujasta" +
-                                    "<kaupunki>" +
-                                    "<nimi>Helsinki</nimi>" +
-                                    "<perustamisvuosi>1550</perustamisvuosi>" +
-                                    "<väkiluku>658 000</väkiluku>" +
-                                    "<kokonaispintaala>71 548 km2</kokonaispintaala>" +
-                                    "<väestöntiheys>3 076 as./km2</väestöntiheys>" +
-                                "</kaupunki>";
-                            document.getElementById("demo2").innerHTML = table2;
-                        }
                         </script>
                     </div>
                 </div>
