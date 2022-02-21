@@ -39,6 +39,43 @@
                     </xmp>
                 </div>
 
+                <button type="button" onclick="loadXMLDocument()">Näytä lista muutamista Suomen kunnista</button>
+                <br><br>
+                <table id="demo3"></table>
+
+                <script>
+                    function loadXMLDocument() {
+                      var xmlhttp = new XMLHttpRequest();
+                      xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                          myFunction2(this);
+                        }
+                      };
+                      xmlhttp.open("GET", "kaupungit.xml", true);
+                      xmlhttp.send();
+                    }
+                    function myFunction2(xml) {
+                      var i;
+                      var xmlDoc = xml.responseXML;
+                      var table="<tr><th>Kaupungin nimi</th><th>Perustamisvuosi</th><th>Väkiluku</th><th>Kokonaispinta-ala</th><th>Väestöntiheys</th></tr>";
+                      var x = xmlDoc.getElementsByTagName("KAUPUNKI");
+                      for (i = 0; i <x.length; i++) {
+                        table += "<tr><td>" +
+                        x[i].getElementsByTagName("NIMI")[0].childNodes[0].nodeValue +
+                        "</td><td>" +
+                        x[i].getElementsByTagName("PERUSTAMISVUOSI")[0].childNodes[0].nodeValue +
+                        "</td><td>" +
+                        x[i].getElementsByTagName("VAKILUKU")[0].childNodes[0].nodeValue +
+                        "</td><td>" +
+                        x[i].getElementsByTagName("KOKONAISPINTAALA")[0].childNodes[0].nodeValue +
+                        "</td><td>" +
+                        x[i].getElementsByTagName("VAESTONTIHEYS")[0].childNodes[0].nodeValue +
+                        "</td></tr>";
+                      }
+                      document.getElementById("demo3").innerHTML = table;
+                    }
+                    </script>
+
 
 
                 <div id="content"></div>
