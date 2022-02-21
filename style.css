@@ -157,5 +157,8 @@
 
   #demo3 {
     display: none;
-    margin-top: -40px;
+  }
+
+  .CityTable{
+      margin-top: -20px;
   }
