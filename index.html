@@ -1,1 +1,136 @@
-Hello World
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    
+
+<h1>testi</h1>
+<p>tämä vaan on</p>
+
+
+<div class="Content" >
+    <div class="contentMain">
+        <section class="suggestions">
+            <div class="timantti" onclick="myThought()"><span class="suggestionsTitle">Sananlasku 1: </span>Minkä taakseen jättää, sen edestään löytää</div>
+            <div class="timantti" onclick="myThought()"><span class="suggestionsTitle">Sananlasku 2: </span>Itku pitkästä ilosta</div>
+            <div class="advertisement" onclick="myAd()"><span class="suggestionsTitle">MAINOS: </span>osta yksi kahden hinnalla</div>
+            <div class="readme">* insert something funny here * &#128516;</div>
+        </section>
+        <section class="content">
+            <div class="news">
+                <button type="button" onclick="loadXMLDoc()">Paina nähdäksesi taulu Helsingin kaupungin perustiedoista</button>
+                <table id="demo"></table>
+
+                <div id="code">
+                    <p class="description">Source code for XML looks like this:</p>
+                    <xmp>
+                        <kaupunki>
+                            <nimi>Helsinki</nimi>
+                            <perustamisvuosi>1550</perustamisvuosi>
+                            <väkiluku>658 000</väkiluku>
+                            <kokonaispintaala>71 548 km2</kokonaispintaala>
+                            <väestöntiheys>3 076 as./km2</väestöntiheys>
+                        </kaupunki>
+                    </xmp>
+                </div>
+
+
+
+                <div id="content"></div>
+            </div>
+            <div class="sidebar">
+
+                <div class="luetuimmatHeader">
+                    <div class="luetuimmatTitle">Luetuimmat vitsit</div>
+                    <div class="luetuimmatBorder"></div>
+                </div>
+
+                <div class="sidebarContent">
+                    <div class="luetuimmat">
+                        Joku lista tänne
+                    </div>
+                    <div class="luetuimmatEnd">
+                        <div class="luetuimmatNaytaLisaa" onclick="myFunction()">Näytä enemmän</div>
+                    </div>
+                </div>
+            <div class="sidebarDivider"></div>
+
+                         <script>
+                            function showCode(){
+                                var x = document.getElementById("code");
+                                x.style.display = "block";
+                            }
+
+                            function myFunction(){
+                                alert("En osaa vielä :[");
+                            }
+
+                            function myThought(){
+                                alert("filosofiaa...");
+                            }
+
+                            function myAd(){
+                                alert("boring ad");
+                            }
+                            
+                            function loadXMLDoc() {
+                                showCode();
+                                var text, parser, xmlDoc;
+
+                            text =
+                                "<kaupunki>" +
+                                    "<nimi>Helsinki</nimi>" +
+                                    "<perustamisvuosi>1550</perustamisvuosi>" +
+                                    "<väkiluku>658 000</väkiluku>" +
+                                    "<kokonaispintaala>71 548 km2</kokonaispintaala>" +
+                                    "<väestöntiheys>3 076 as./km2</väestöntiheys>" +
+                                "</kaupunki>";
+
+                            parser = new DOMParser();
+                            xmlDoc = parser.parseFromString(text, "text/xml");
+
+                            var i;
+                            var table="<tr><th>Kaupungin nimi</th><th>Perustamisvuosi</th><th>Väkiluku</th><th>Kokonaispinta-ala</th><th>Väestöntiheys</th></tr>";
+                            var x = xmlDoc.getElementsByTagName("kaupunki");
+                            console.log(x.length);
+                            console.log(x);
+                            for (i = 0; i <x.length; i++) {
+                                table += "<tr><td>" +
+                                x[i].getElementsByTagName("nimi")[0].childNodes[0].nodeValue +
+                                "</td><td>" +
+                                x[i].getElementsByTagName("perustamisvuosi")[0].childNodes[0].nodeValue +
+                                "</td><td>"+
+                                x[i].getElementsByTagName("väkiluku")[0].childNodes[0].nodeValue +
+                                "</td><td>" +
+                                x[i].getElementsByTagName("kokonaispintaala")[0].childNodes[0].nodeValue +
+                                "</td><td>" +
+                                x[i].getElementsByTagName("väestöntiheys")[0].childNodes[0].nodeValue +
+                                "</td></tr>";
+
+                            }
+                            document.getElementById("demo").innerHTML = table;
+                            var table2 = "<div> Tämän taulun tiedot on otettu XML tyylitellystä string -muuttujasta" +
+                                    "<kaupunki>" +
+                                    "<nimi>Helsinki</nimi>" +
+                                    "<perustamisvuosi>1550</perustamisvuosi>" +
+                                    "<väkiluku>658 000</väkiluku>" +
+                                    "<kokonaispintaala>71 548 km2</kokonaispintaala>" +
+                                    "<väestöntiheys>3 076 as./km2</väestöntiheys>" +
+                                "</kaupunki>";
+                            document.getElementById("demo2").innerHTML = table2;
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</body>
+</html>
