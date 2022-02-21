@@ -24,7 +24,7 @@
         <section class="content">
             <div class="news">
 
-                <button type="button" onclick="hideORshow()">Näytä lista muutamista Suomen kunnista / kaupungeista</button>
+                <button id="button" onclick="hideORshow()">Näytä lista muutamista Suomen kunnista / kaupungeista</button>
                 <br><br>
                 <table id="demo3"></table>
 
@@ -32,13 +32,16 @@
                     function hideORshow(){
                         var x = document.getElementById("demo3");
                         var y = document.getElementById("code");
+                        var z = document.getElementById("button");
                             if (x.style.display === "none") {
                                 loadXMLDocument();
                                 x.style.display = "block";
-                                y.style.display = "block";      
+                                y.style.display = "block"; 
+                                z.value = "Piilota lista muutamista Suomen kunnista / kaupungeista";   
                             } else {
                                 x.style.display = "none";
                                 y.style.display = "none";
+                                z.value = "Näytä lista muutamista Suomen kunnista / kaupungeista";
                             }
                     }
 
